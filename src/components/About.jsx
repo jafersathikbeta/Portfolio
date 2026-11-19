@@ -68,6 +68,12 @@ const education = [
     score: '',
     year: '',
   },
+  {
+    school: 'SSVM Matriculation Higher Secondary School, Mettupalayam',
+    degree: 'SSLC',
+    score: '',
+    year: '',
+  },
 ]
 
 const achievements = [
