@@ -45,7 +45,7 @@ const aiSecuritySkills = [
   'faster-whisper',
   'PII Redaction',
   'MITRE ATLAS',
-  'NIST CSF 2.0',
+  'NIST CSF',
   'API Security',
   'PyWebView',
 ]
@@ -150,7 +150,7 @@ export default function About() {
                 I work on AI pipelines and defensive security — offline
                 multimodal RAG with PII redaction and tamper-evident logs
                 (AegisRAG), and an API gateway that maps agent actions to MITRE
-                ATLAS and NIST CSF 2.0 (Sentinel).
+                ATLAS and NIST CSF (Sentinel).
               </p>
 
               <p className="font-body mt-4 text-lg leading-relaxed text-slate-300 md:text-xl">

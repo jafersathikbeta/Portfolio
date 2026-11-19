@@ -61,10 +61,10 @@ const projects = [
     tagline: 'AI Security',
     year: 'Jan – Mar 2025',
     description: [
-      'Defensive API gateway that validates AI-agent actions, maps threats to MITRE ATLAS and NIST CSF 2.0, and keeps an auditable SQLite record of every request.',
+      'Defensive API gateway that validates AI-agent actions, maps threats to MITRE ATLAS and NIST CSF, and keeps an auditable SQLite record of every request.',
 'Checks READ, WRITE, EXECUTE and NETWORK actions against a threat-signature library and returns a 403 with the matched framework mapping. Exposes block-rate metrics through a REST endpoint and dashboard, and runs as a desktop app or a headless FastAPI service.',
     ],
-    tech: ['Python', 'FastAPI', 'SQLite', 'MITRE ATLAS', 'NIST CSF 2.0', 'API Security'],
+    tech: ['Python', 'FastAPI', 'SQLite', 'MITRE ATLAS', 'NIST CSF', 'API Security'],
     github: 'https://github.com/jafersathikbeta/Sentinel-AI-Gateway',
     icon: FaShieldAlt,
     accent: 'text-emerald-300',
