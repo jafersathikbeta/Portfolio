@@ -1,0 +1,274 @@
+@import "tailwindcss";
+
+@theme {
+  --color-surface: #07090D;
+  --color-surface-raised: #12151C;
+  --color-accent: #FF5B2E;
+  --color-accent-warm: #FF8A3D;
+  --color-accent-gold: #FFD166;
+  --font-display: "Syne", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* ---------- Base ---------- */
+html {
+  scroll-padding-top: 4.5rem;
+  scrollbar-gutter: stable;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  font-family: var(--font-body);
+  background-color: var(--color-surface);
+  color: #e2e8f0;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100svh;
+  width: 100%;
+}
+
+::selection {
+  background: rgba(255, 91, 46, 0.3);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-gold);
+  outline-offset: 3px;
+}
+
+/* ---------- Layout helpers ---------- */
+.wrap {
+  --pad: clamp(1.25rem, 4vw, 2rem);
+  width: 100%;
+  max-width: 72rem;
+  margin-inline: auto;
+  padding-inline: max(var(--pad), env(safe-area-inset-left))
+    max(var(--pad), env(safe-area-inset-right));
+}
+
+@media (min-width: 1536px) {
+  .wrap {
+    max-width: 80rem;
+  }
+}
+
+/* ---------- Typography ---------- */
+.eyebrow {
+  margin-bottom: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.eyebrow-gold {
+  color: var(--color-accent-gold);
+}
+
+.h-section {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 6.5vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #fff;
+  overflow-wrap: break-word;
+}
+
+.h-hello {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 5vw, 3.25rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.h-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.4rem, 7.6vw, 5.75rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 1536px) {
+  .h-name {
+    font-size: 6.5rem;
+  }
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #ff8a3d 0%, #ff5b2e 45%, #ffd166 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- Backgrounds ---------- */
+.mesh-bg {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 10%, rgba(255, 138, 61, 0.18), transparent 50%),
+    radial-gradient(ellipse 70% 50% at 80% 20%, rgba(255, 209, 102, 0.16), transparent 50%),
+    radial-gradient(ellipse 60% 40% at 50% 80%, rgba(255, 91, 46, 0.1), transparent 50%),
+    #07090d;
+}
+
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black 20%, transparent 75%);
+}
+
+/* ---------- Navbar ---------- */
+.nav-solid {
+  background: rgba(7, 9, 13, 0.94);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- HUD panels ---------- */
+.glass {
+  position: relative;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  transition: border-color 0.25s;
+}
+
+@media (hover: hover) {
+  .glass:hover {
+    border-color: var(--color-accent);
+  }
+}
+
+.glass::before,
+.glass::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+  border: 2px solid var(--color-accent);
+}
+
+.glass::before {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.glass::after {
+  bottom: 0;
+  right: 0;
+  border-left: 0;
+  border-top: 0;
+}
+
+/* ---------- Effects ---------- */
+.btn-glow {
+  box-shadow:
+    0 0 20px rgba(255, 91, 46, 0.25),
+    0 0 40px rgba(255, 138, 61, 0.1);
+}
+
+@media (hover: hover) {
+  .btn-glow:hover {
+    box-shadow:
+      0 0 28px rgba(255, 91, 46, 0.4),
+      0 0 56px rgba(255, 209, 102, 0.2);
+  }
+}
+
+.typewriter-cursor::after {
+  content: "|";
+  margin-left: 2px;
+  color: var(--color-accent);
+  animation: blink 0.9s step-end infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ---------- Lenis ---------- */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* ---------- Custom cursor (fine pointers only) ---------- */
+html.has-custom-cursor,
+html.has-custom-cursor * {
+  cursor: none !important;
+}
+
+/* ---------- Scanlines ---------- */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 95;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.025) 0 1px,
+    transparent 1px 3px
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after {
+    display: none;
+  }
+
+  .animate-float,
+  .typewriter-cursor::after {
+    animation: none;
+  }
+}
