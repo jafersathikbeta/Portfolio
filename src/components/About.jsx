@@ -1,4 +1,6 @@
 import { motion } from 'framer-motion'
+import { FaBoxes, FaTicketAlt } from 'react-icons/fa'
+import { FiExternalLink } from 'react-icons/fi'
 import {
   SiPython,
   SiPhp,
@@ -52,7 +54,24 @@ const stats = [
   { value: '242', label: 'Event registrations handled' },
   { value: '28', label: 'Paper submissions managed' },
   { value: '5,000+', label: 'B2B leads generated' },
-  { value: '2', label: 'Live production sites delivered' },
+  { value: '4', label: 'Featured projects shipped' },
+]
+
+const deployments = [
+  {
+    name: 'Yutira 2026 Symposium',
+    host: 'yutira.psgtech.ac.in',
+    note: 'Deployed on the college domain',
+    href: 'https://yutira.psgtech.ac.in',
+    icon: FaTicketAlt,
+  },
+  {
+    name: 'Forge Inventory',
+    host: 'ams.itcoresolutions.in',
+    note: "Deployed remotely to the client's server",
+    href: 'https://ams.itcoresolutions.in',
+    icon: FaBoxes,
+  },
 ]
 
 const education = [
@@ -180,30 +199,71 @@ export default function About() {
             </motion.div>
           </div>
 
-          {/* Stats — fills the right column on desktop */}
-          <motion.aside
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-60px' }}
-            aria-label="Highlights"
-            className="grid grid-cols-2 content-start gap-3 sm:gap-4 lg:pt-28"
-          >
-            {stats.map((s) => (
-              <motion.div
-                key={s.label}
-                variants={item}
-                className="glass p-4 sm:p-5"
-              >
-                <p className="font-display text-gradient text-3xl font-bold sm:text-4xl">
-                  {s.value}
-                </p>
-                <p className="font-body mt-2 text-xs leading-snug text-slate-400 sm:text-sm">
-                  {s.label}
-                </p>
-              </motion.div>
-            ))}
-          </motion.aside>
+          {/* Right column: stats + live deployments */}
+          <div className="lg:pt-28">
+            <motion.aside
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: '-60px' }}
+              aria-label="Highlights"
+              className="grid grid-cols-2 content-start gap-3 sm:gap-4"
+            >
+              {stats.map((s) => (
+                <motion.div
+                  key={s.label}
+                  variants={item}
+                  className="glass p-4 sm:p-5"
+                >
+                  <p className="font-display text-gradient text-3xl font-bold sm:text-4xl">
+                    {s.value}
+                  </p>
+                  <p className="font-body mt-2 text-xs leading-snug text-slate-400 sm:text-sm">
+                    {s.label}
+                  </p>
+                </motion.div>
+              ))}
+            </motion.aside>
+
+            <p className="eyebrow eyebrow-gold mt-8">Live Deployments</p>
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: '-60px' }}
+              className="space-y-3 sm:space-y-4"
+            >
+              {deployments.map((d) => {
+                const Icon = d.icon
+                return (
+                  <motion.a
+                    key={d.name}
+                    variants={item}
+                    href={d.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="glass group flex items-center gap-4 p-4 sm:p-5"
+                  >
+                    <span className="text-accent flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-xl">
+                      <Icon />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="font-display block truncate text-sm font-semibold text-white sm:text-base">
+                        {d.name}
+                      </span>
+                      <span className="font-body text-accent-gold block truncate text-xs sm:text-sm">
+                        {d.host}
+                      </span>
+                      <span className="font-body block text-xs leading-snug text-slate-400">
+                        {d.note}
+                      </span>
+                    </span>
+                    <FiExternalLink className="group-hover:text-accent shrink-0 text-lg text-slate-400 transition-colors" />
+                  </motion.a>
+                )
+              })}
+            </motion.div>
+          </div>
         </div>
 
         {/* Technical skills */}
