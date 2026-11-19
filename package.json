@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.1.0",
   "type": "module",
-  "homepage": "https://jafersathikbeta.github.io/portfolio-3d/",
+  "homepage": "https://jafersathikbeta.github.io/portfolio/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
