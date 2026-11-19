@@ -136,7 +136,7 @@ export default function Intro({ onDone }) {
         <Corner className="right-5 bottom-5 border-r-2 border-b-2" />
 
         <div className="absolute inset-x-0 top-0 flex justify-between px-9 pt-9 font-mono text-[11px] tracking-[0.3em] text-slate-500 uppercase sm:px-12 sm:pt-11">
-          <span>UNDERSTAND → DESIGN → BUILD → TEST → DEPLOY</span>
+          <span>TRUST THE PROCESS</span>
           <span>{new Date().getFullYear()}</span>
         </div>
 
