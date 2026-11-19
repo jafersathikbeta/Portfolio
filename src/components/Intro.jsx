@@ -142,14 +142,6 @@ export default function Intro({ onDone }) {
 
         {/* Centre: logo mark, name, roles */}
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.1, ease: EASE_OUT }}
-            className="glass bg-surface font-display mb-8 flex h-12 w-14 items-center justify-center text-base font-bold text-white"
-          >
-            JSB<span className="text-accent">.</span>
-          </motion.div>
 
           <h1
             aria-label="Jafer Sathik B"
