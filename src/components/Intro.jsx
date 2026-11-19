@@ -2,10 +2,27 @@ import { useCallback, useEffect, useRef } from 'react'
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion'
 import { markIntroSeen } from '../lib/intro'
 
-const DURATION = 2
+const DURATION = 2.6
 const EASE_OUT = [0.22, 1, 0.36, 1]
 const EASE_CURTAIN = [0.76, 0, 0.24, 1]
-const LETTERS = ['J', 'S', 'B']
+
+const WORDS = ['JAFER', 'SATHIK', 'B']
+const ROLES = ['Full-Stack Developer', 'AI Engineer', 'Cybersecurity Enthusiast']
+
+// Give every letter a running index so the reveal staggers across the whole name.
+let letterCount = 0
+const NAME = WORDS.map((word) =>
+  word.split('').map((ch) => ({ ch, i: letterCount++ })),
+)
+
+function Corner({ className }) {
+  return (
+    <span
+      aria-hidden="true"
+      className={`border-accent absolute h-5 w-5 ${className}`}
+    />
+  )
+}
 
 export default function Intro({ onDone }) {
   const ref = useRef(null)
@@ -85,69 +102,113 @@ export default function Intro({ onDone }) {
         }}
       />
 
-      {/* Soft accent glow */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            'radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255,91,46,0.13), transparent 70%)',
-        }}
-      />
-
       <motion.div
-        className="relative z-10 h-full"
-        exit={{ opacity: 0, transition: { duration: 0.25 } }}
+        className="relative z-10 h-full overflow-hidden"
+        exit={{ opacity: 0, scale: 1.03, transition: { duration: 0.3 } }}
       >
-        {/* Centre: big wordmark, letters rise out of a mask */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <h1
-            aria-label="JSB"
-            className="font-display flex items-baseline text-7xl font-bold tracking-tight text-white sm:text-8xl md:text-9xl"
-          >
-            {LETTERS.map((letter, i) => (
-              <span key={letter} className="inline-block overflow-hidden py-2">
-                <motion.span
-                  aria-hidden="true"
-                  initial={{ y: '110%' }}
-                  animate={{ y: '0%' }}
-                  transition={{ duration: 0.7, delay: 0.15 + i * 0.12, ease: EASE_OUT }}
-                  className="inline-block"
-                >
-                  {letter}
-                </motion.span>
-              </span>
-            ))}
-            <motion.span
-              aria-hidden="true"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 14, delay: 0.7 }}
-              className="text-accent inline-block origin-bottom-left"
-            >
-              .
-            </motion.span>
-          </h1>
+        {/* Background: grid + glow */}
+        <div
+          aria-hidden="true"
+          className="grid-overlay pointer-events-none absolute inset-0"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              'radial-gradient(ellipse 55% 45% at 50% 50%, rgba(255,91,46,0.16), transparent 70%)',
+          }}
+        />
+
+        {/* One scan line sweeping top to bottom */}
+        <motion.div
+          aria-hidden="true"
+          initial={{ y: 0, opacity: 0 }}
+          animate={{ y: '100vh', opacity: [0, 1, 1, 0] }}
+          transition={{ duration: 1.7, delay: 0.2, ease: 'easeInOut' }}
+          className="via-accent pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent to-transparent shadow-[0_0_24px_rgba(255,91,46,0.9)]"
+        />
+
+        {/* HUD frame */}
+        <Corner className="top-5 left-5 border-t-2 border-l-2" />
+        <Corner className="top-5 right-5 border-t-2 border-r-2" />
+        <Corner className="bottom-5 left-5 border-b-2 border-l-2" />
+        <Corner className="right-5 bottom-5 border-r-2 border-b-2" />
+
+        <div className="absolute inset-x-0 top-0 flex justify-between px-9 pt-9 font-mono text-[11px] tracking-[0.3em] text-slate-500 uppercase sm:px-12 sm:pt-11">
+          <span>Portfolio</span>
+          <span>{new Date().getFullYear()}</span>
         </div>
 
-        {/* Bottom row: name left, percentage right */}
-        <div
-          className="absolute inset-x-0 bottom-0 flex items-end justify-between px-6 pb-8 sm:px-10 sm:pb-10"
-          style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}
-        >
+        {/* Centre: logo mark, name, roles */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.5 }}
-            className="text-left"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.1, ease: EASE_OUT }}
+            className="glass bg-surface font-display mb-8 flex h-12 w-14 items-center justify-center text-base font-bold text-white"
           >
-            <p className="font-display text-xs font-semibold tracking-[0.3em] text-white/90 uppercase sm:text-sm">
-              Jafer Sathik B
-            </p>
-            <p className="font-body mt-1.5 text-xs text-slate-400 sm:text-sm">
-              Full-Stack · AI · Security
-            </p>
+            JSB<span className="text-accent">.</span>
           </motion.div>
+
+          <h1
+            aria-label="Jafer Sathik B"
+            className="font-display flex flex-wrap justify-center gap-x-[0.3em] text-5xl leading-none font-bold tracking-tight text-white sm:text-7xl md:text-8xl"
+          >
+            {NAME.map((word, w) => (
+              <span key={w} className="inline-flex" aria-hidden="true">
+                {word.map(({ ch, i }) => (
+                  <span key={i} className="inline-block overflow-hidden py-1">
+                    <motion.span
+                      initial={{ y: '110%', opacity: 0, filter: 'blur(8px)' }}
+                      animate={{ y: '0%', opacity: 1, filter: 'blur(0px)' }}
+                      transition={{
+                        duration: 0.7,
+                        delay: 0.3 + i * 0.045,
+                        ease: EASE_OUT,
+                      }}
+                      className={`inline-block ${w === NAME.length - 1 ? 'text-gradient' : ''}`}
+                    >
+                      {ch}
+                    </motion.span>
+                  </span>
+                ))}
+              </span>
+            ))}
+          </h1>
+
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 0.9, delay: 1, ease: EASE_OUT }}
+            className="via-accent mt-7 h-px w-full max-w-md bg-gradient-to-r from-transparent to-transparent"
+          />
+
+          <div className="font-body mt-6 flex flex-wrap items-center justify-center gap-x-7 gap-y-2 text-sm text-slate-300 sm:text-base">
+            {ROLES.map((role, i) => (
+              <motion.span
+                key={role}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.1 + i * 0.18 }}
+                className="flex items-center gap-2"
+              >
+                <span className="bg-accent inline-block h-1.5 w-1.5" />
+                {role}
+              </motion.span>
+            ))}
+          </div>
+        </div>
+
+        {/* Bottom row: status left, counter right */}
+        <div
+          className="absolute inset-x-0 bottom-0 flex items-end justify-between px-9 sm:px-12"
+          style={{ paddingBottom: 'max(2.25rem, env(safe-area-inset-bottom))' }}
+        >
+          <p className="flex items-center gap-2.5 font-mono text-[11px] tracking-[0.3em] text-slate-400 uppercase">
+            <span className="bg-accent h-1.5 w-1.5 animate-pulse rounded-full" />
+            Loading portfolio
+          </p>
 
           <p className="font-display text-5xl leading-none font-bold text-white/90 tabular-nums sm:text-7xl">
             <motion.span>{percent}</motion.span>
@@ -155,7 +216,7 @@ export default function Intro({ onDone }) {
           </p>
         </div>
 
-        {/* Full-width progress line along the very bottom */}
+        {/* Full-width progress line */}
         <div className="absolute inset-x-0 bottom-0 h-[3px] bg-white/10">
           <motion.div
             style={{ scaleX: barScale }}
