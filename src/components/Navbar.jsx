@@ -85,7 +85,7 @@ export default function Navbar() {
           }}
           className="font-display text-lg font-bold tracking-tight text-white md:text-xl"
         >
-          jafersathikbeta<span className="text-accent">.</span>
+          @jafersathikbeta<span className="text-accent">.</span>
         </a>
 
         <ul className="hidden items-center gap-8 md:flex">
