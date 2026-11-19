@@ -65,7 +65,7 @@ const education = [
   {
     school: 'Al-Ameen Polytechnic College, Erode',
     degree: 'Diploma in Civil Engineering',
-    score: '95%',
+    score: '',
     year: '',
   },
 ]
