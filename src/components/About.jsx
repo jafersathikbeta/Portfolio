@@ -178,7 +178,7 @@ export default function About() {
               </p>
 
               <p className="font-body mt-4 text-lg leading-relaxed text-slate-300 md:text-xl">
-                Alongside that I ship production software: inventory and BOM systems in Laravel for a client, 
+                Alongside that I ship production software: Inventory and BOM systems in Laravel for a client, 
                 and a symposium platform that handled 242 registrations and 28 paper submissions.
               </p>
             </motion.div>
