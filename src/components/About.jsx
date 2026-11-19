@@ -18,21 +18,47 @@ import {
   SiCpanel,
 } from 'react-icons/si'
 
-const skills = [
-  { name: 'Python', icon: SiPython, color: '#3776AB' },
-  { name: 'PHP', icon: SiPhp, color: '#777BB4' },
-  { name: 'Laravel', icon: SiLaravel, color: '#FF2D20' },
-  { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
-  { name: 'React', icon: SiReact, color: '#61DAFB' },
-  { name: 'Next.js', icon: SiNextdotjs, color: '#ffffff' },
-  { name: 'FastAPI', icon: SiFastapi, color: '#009688' },
-  { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
-  { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
-  { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
-  { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
-  { name: 'Git', icon: SiGit, color: '#F05032' },
-  { name: 'Docker', icon: SiDocker, color: '#2496ED' },
-  { name: 'cPanel', icon: SiCpanel, color: '#FF6C2C' },
+// Grouped exactly like the resume's "Technical Skills" section.
+const skillGroups = [
+  {
+    title: 'Languages',
+    items: [
+      { name: 'Python', icon: SiPython, color: '#3776AB' },
+      { name: 'JavaScript', icon: SiJavascript, color: '#F7DF1E' },
+      { name: 'PHP', icon: SiPhp, color: '#777BB4' },
+    ],
+  },
+  {
+    title: 'Frontend',
+    items: [
+      { name: 'React', icon: SiReact, color: '#61DAFB' },
+      { name: 'Next.js', icon: SiNextdotjs, color: '#ffffff' },
+    ],
+  },
+  {
+    title: 'Backend',
+    items: [
+      { name: 'Laravel', icon: SiLaravel, color: '#FF2D20' },
+      { name: 'FastAPI', icon: SiFastapi, color: '#009688' },
+      { name: 'Node.js', icon: SiNodedotjs, color: '#339933' },
+    ],
+  },
+  {
+    title: 'Databases',
+    items: [
+      { name: 'MySQL', icon: SiMysql, color: '#4479A1' },
+      { name: 'MongoDB', icon: SiMongodb, color: '#47A248' },
+      { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1' },
+    ],
+  },
+  {
+    title: 'Tools',
+    items: [
+      { name: 'Git', icon: SiGit, color: '#F05032' },
+      { name: 'Docker', icon: SiDocker, color: '#2496ED' },
+      { name: 'cPanel', icon: SiCpanel, color: '#FF6C2C' },
+    ],
+  },
 ]
 
 const aiSecuritySkills = [
@@ -264,56 +290,69 @@ export default function About() {
           </div>
         </div>
 
-        {/* Technical skills */}
+        {/* Technical skills — grouped like the resume */}
         <div className="mt-16 md:mt-20">
           <p className="eyebrow eyebrow-gold">Technical Skills</p>
 
-          <motion.div
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-60px' }}
-            className="grid grid-cols-3 gap-3 sm:grid-cols-4 md:grid-cols-7 md:gap-4"
-          >
-            {skills.map((skill) => {
-              const Icon = skill.icon
-              return (
+          <div className="space-y-8">
+            {skillGroups.map((group) => (
+              <div key={group.title}>
+                <h3 className="font-display mb-3 text-sm font-semibold tracking-wide text-slate-300 sm:text-base">
+                  {group.title}
+                </h3>
                 <motion.div
-                  key={skill.name}
-                  variants={item}
-                  whileHover={{ y: -6, scale: 1.04 }}
-                  className="glass group flex flex-col items-center gap-3 px-2 py-5 sm:px-3"
+                  variants={container}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, margin: '-60px' }}
+                  className="flex flex-wrap gap-3 md:gap-4"
                 >
-                  <Icon
-                    className="text-3xl transition-transform duration-300 group-hover:scale-110 md:text-4xl"
-                    style={{ color: skill.color }}
-                  />
-                  <span className="font-body text-xs font-medium text-slate-400 group-hover:text-slate-200 md:text-sm">
-                    {skill.name}
-                  </span>
+                  {group.items.map((skill) => {
+                    const Icon = skill.icon
+                    return (
+                      <motion.div
+                        key={skill.name}
+                        variants={item}
+                        whileHover={{ y: -6, scale: 1.04 }}
+                        className="glass group flex w-24 flex-col items-center gap-3 px-2 py-5 sm:w-28 md:w-32"
+                      >
+                        <Icon
+                          className="text-3xl transition-transform duration-300 group-hover:scale-110 md:text-4xl"
+                          style={{ color: skill.color }}
+                        />
+                        <span className="font-body text-xs font-medium text-slate-400 group-hover:text-slate-200 md:text-sm">
+                          {skill.name}
+                        </span>
+                      </motion.div>
+                    )
+                  })}
                 </motion.div>
-              )
-            })}
-          </motion.div>
-
-          <p className="eyebrow eyebrow-gold mt-10">AI &amp; Security</p>
-          <motion.ul
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-60px' }}
-            className="flex flex-wrap gap-2"
-          >
-            {aiSecuritySkills.map((s) => (
-              <motion.li
-                key={s}
-                variants={item}
-                className="font-body rounded-md border border-slate-600/60 bg-slate-800/50 px-3 py-1.5 text-xs font-medium text-slate-200 sm:text-sm"
-              >
-                {s}
-              </motion.li>
+              </div>
             ))}
-          </motion.ul>
+
+            <div>
+              <h3 className="font-display mb-3 text-sm font-semibold tracking-wide text-slate-300 sm:text-base">
+                AI &amp; Security
+              </h3>
+              <motion.ul
+                variants={container}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, margin: '-60px' }}
+                className="flex flex-wrap gap-2"
+              >
+                {aiSecuritySkills.map((s) => (
+                  <motion.li
+                    key={s}
+                    variants={item}
+                    className="font-body rounded-md border border-slate-600/60 bg-slate-800/50 px-3 py-1.5 text-xs font-medium text-slate-200 sm:text-sm"
+                  >
+                    {s}
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </div>
+          </div>
         </div>
 
         {/* Achievements */}
