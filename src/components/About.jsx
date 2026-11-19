@@ -290,14 +290,17 @@ export default function About() {
           </div>
         </div>
 
-        {/* Technical skills — grouped like the resume */}
+        {/* Technical skills — grouped like the resume, one row per group */}
         <div className="mt-16 md:mt-20">
           <p className="eyebrow eyebrow-gold">Technical Skills</p>
 
-          <div className="space-y-8">
+          <div className="divide-y divide-white/10">
             {skillGroups.map((group) => (
-              <div key={group.title}>
-                <h3 className="font-display mb-3 text-sm font-semibold tracking-wide text-slate-300 sm:text-base">
+              <div
+                key={group.title}
+                className="grid gap-3 py-5 sm:grid-cols-[8rem_minmax(0,1fr)] sm:items-center sm:gap-6"
+              >
+                <h3 className="font-display text-sm font-semibold tracking-wide text-slate-300 sm:text-base">
                   {group.title}
                 </h3>
                 <motion.div
@@ -305,7 +308,7 @@ export default function About() {
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, margin: '-60px' }}
-                  className="flex flex-wrap gap-3 md:gap-4"
+                  className="flex flex-wrap gap-3"
                 >
                   {group.items.map((skill) => {
                     const Icon = skill.icon
@@ -313,14 +316,14 @@ export default function About() {
                       <motion.div
                         key={skill.name}
                         variants={item}
-                        whileHover={{ y: -6, scale: 1.04 }}
-                        className="glass group flex w-24 flex-col items-center gap-3 px-2 py-5 sm:w-28 md:w-32"
+                        whileHover={{ y: -4, scale: 1.04 }}
+                        className="glass group flex w-20 flex-col items-center gap-2 px-2 py-3 sm:w-24"
                       >
                         <Icon
-                          className="text-3xl transition-transform duration-300 group-hover:scale-110 md:text-4xl"
+                          className="text-2xl transition-transform duration-300 group-hover:scale-110 md:text-3xl"
                           style={{ color: skill.color }}
                         />
-                        <span className="font-body text-xs font-medium text-slate-400 group-hover:text-slate-200 md:text-sm">
+                        <span className="font-body text-xs font-medium text-slate-400 group-hover:text-slate-200">
                           {skill.name}
                         </span>
                       </motion.div>
@@ -330,8 +333,8 @@ export default function About() {
               </div>
             ))}
 
-            <div>
-              <h3 className="font-display mb-3 text-sm font-semibold tracking-wide text-slate-300 sm:text-base">
+            <div className="grid gap-3 py-5 sm:grid-cols-[8rem_minmax(0,1fr)] sm:items-center sm:gap-6">
+              <h3 className="font-display text-sm font-semibold tracking-wide text-slate-300 sm:text-base">
                 AI &amp; Security
               </h3>
               <motion.ul
