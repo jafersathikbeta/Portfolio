@@ -136,7 +136,7 @@ export default function Intro({ onDone }) {
         <Corner className="right-5 bottom-5 border-r-2 border-b-2" />
 
         <div className="absolute inset-x-0 top-0 flex justify-between px-9 pt-9 font-mono text-[11px] tracking-[0.3em] text-slate-500 uppercase sm:px-12 sm:pt-11">
-          <span>Portfolio</span>
+          <span>AVAILABLE FOR WORK</span>
           <span>{new Date().getFullYear()}</span>
         </div>
 
@@ -210,7 +210,7 @@ export default function Intro({ onDone }) {
             Loading portfolio
           </p>
 
-          <p className="font-display text-5xl leading-none font-bold text-white/90 tabular-nums sm:text-7xl">
+          <p className="font-display text-5xl leading-none font-bold text-white/90 tabular-nums sm:text-5xl">
             <motion.span>{percent}</motion.span>
             <span className="text-accent text-2xl sm:text-3xl">%</span>
           </p>
