@@ -17,6 +17,7 @@ const projects = [
     year: 'Sep – Nov 2026',
     description: [
       'Desktop middleware monitor visualizing agent pipelines. Validates actions against Sentinel API before routing to LLM chatbots.',
+'Simulates safe and malicious agent actions: a 403 from Sentinel halts the pipeline before the chatbot, while a 200 forwards it. Each step shows in a live trace, and unreachable servers surface detailed errors.',
     ],
     tech: ['Python', 'FastAPI', 'PyWebView', 'HTTPX', 'Pydantic', 'LLM Integration', 'API Middleware'],
     github: 'https://github.com/jafersathikbeta/Agent-Integration',
@@ -31,6 +32,7 @@ const projects = [
     year: 'Oct 2026',
     description: [
       'B2B lead-generation pipeline producing 5,000+ leads through YouTube discovery, AI-assisted outreach, lead scoring and export workflows.',
+'Scores channels on views, subscribers, country and monetization intent, and tags the top 5% of each batch as Priority A. Falls back to ytscrape when the YouTube API quota runs out and to a template pitch when the Groq keys are exhausted.',
     ],
     tech: ['Python', 'Streamlit', 'Groq LLM', 'YouTube Data API', 'SQLite', 'Pandas', 'OpenPyXL', 'B2B Lead Generation'],
     github: 'https://github.com/jafersathikbeta/Incubrix-Growth-Engine',
@@ -60,6 +62,7 @@ const projects = [
     year: 'Jan – Mar 2025',
     description: [
       'Defensive API gateway that validates AI-agent actions, maps threats to MITRE ATLAS and NIST CSF 2.0, and keeps an auditable SQLite record of every request.',
+'Checks READ, WRITE, EXECUTE and NETWORK actions against a threat-signature library and returns a 403 with the matched framework mapping. Exposes block-rate metrics through a REST endpoint and dashboard, and runs as a desktop app or a headless FastAPI service.',
     ],
     tech: ['Python', 'FastAPI', 'SQLite', 'MITRE ATLAS', 'NIST CSF 2.0', 'API Security'],
     github: 'https://github.com/jafersathikbeta/Sentinel-AI-Gateway',

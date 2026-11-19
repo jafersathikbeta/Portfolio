@@ -112,7 +112,7 @@ const achievements = [
     title: 'IEEE Students Chapter (Chapter 12951)',
     meta: 'PSG College of Technology',
     description:
-      'Directed promotional video strategies and executed videography for Srishti, the annual national-level technical symposium.',
+      'Directed promotional video strategies and executed the videography for Srishti, the annual national-level technical symposium, from planning the promo content to shooting it.',
   },
   {
     title: 'Under-17 Zonal Badminton',
