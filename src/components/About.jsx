@@ -52,28 +52,20 @@ const stats = [
   { value: '242', label: 'Event registrations handled' },
   { value: '28', label: 'Paper submissions managed' },
   { value: '5,000+', label: 'B2B leads generated' },
-  { value: '4', label: 'Featured projects shipped' },
+  { value: '2', label: 'Live production sites delivered' },
 ]
 
-// Add a `year` (e.g. '2022') to the Diploma and SSLC entries if you want
-// all three rows to show a date on the right.
 const education = [
   {
     school: 'PSG College of Technology, Coimbatore',
     degree: 'B.Tech. Information Technology',
-    score: 'CGPA 6.17 / 10',
+    score: '',
     year: 'Expected 2027',
   },
   {
     school: 'Al-Ameen Polytechnic College, Erode',
     degree: 'Diploma in Civil Engineering',
     score: '95%',
-    year: '',
-  },
-  {
-    school: 'SSVM Matriculation Higher Secondary School, Mettupalayam',
-    degree: 'SSLC',
-    score: '98%',
     year: '',
   },
 ]
@@ -168,8 +160,13 @@ export default function About() {
                       )}
                     </div>
                     <p className="font-body mt-1 text-base text-slate-300">
-                      {edu.degree} —{' '}
-                      <span className="text-accent/90">{edu.score}</span>
+                      {edu.degree}
+                      {edu.score && (
+                        <>
+                          {' — '}
+                          <span className="text-accent/90">{edu.score}</span>
+                        </>
+                      )}
                     </p>
                   </div>
                 ))}
