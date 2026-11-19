@@ -26,6 +26,20 @@ const projects = [
     border: 'border-orange-400/25',
   },
   {
+    title: 'Incubrix Growth Engine',
+    tagline: 'Lead Generation',
+    year: 'Oct 2026',
+    description: [
+      'B2B lead-generation pipeline producing 5,000+ leads through YouTube discovery, AI-assisted outreach, lead scoring and export workflows.',
+    ],
+    tech: ['Python', 'Streamlit', 'Groq LLM', 'YouTube Data API', 'SQLite', 'Pandas', 'OpenPyXL', 'B2B Lead Generation'],
+    github: 'https://github.com/jafersathikbeta/Incubrix-Growth-Engine',
+    icon: FaChartLine,
+    accent: 'text-amber-300',
+    glow: 'shadow-[0_0_32px_rgba(255,209,102,0.28)]',
+    border: 'border-amber-400/25',
+  },
+  {
     title: 'AegisRAG',
     tagline: 'Offline RAG',
     year: 'May – Aug 2026',
@@ -39,20 +53,6 @@ const projects = [
     accent: 'text-orange-300',
     glow: 'shadow-[0_0_32px_rgba(255,91,46,0.25)]',
     border: 'border-orange-400/25',
-  },
-  {
-    title: 'Incubrix Growth Engine',
-    tagline: 'Lead Generation',
-    year: 'Oct 2026',
-    description: [
-      'B2B lead-generation pipeline producing 5,000+ leads through YouTube discovery, AI-assisted outreach, lead scoring and export workflows.',
-    ],
-    tech: ['Python', 'Streamlit', 'Groq LLM', 'YouTube Data API', 'SQLite', 'Pandas', 'OpenPyXL', 'B2B Lead Generation'],
-    github: 'https://github.com/jafersathikbeta/Incubrix-Growth-Engine',
-    icon: FaChartLine,
-    accent: 'text-amber-300',
-    glow: 'shadow-[0_0_32px_rgba(255,209,102,0.28)]',
-    border: 'border-amber-400/25',
   },
   {
     title: 'Sentinel AI Gateway',
