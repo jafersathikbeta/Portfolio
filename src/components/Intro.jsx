@@ -2,9 +2,10 @@ import { useCallback, useEffect, useRef } from 'react'
 import { animate, motion, useMotionValue, useTransform } from 'framer-motion'
 import { markIntroSeen } from '../lib/intro'
 
-const DURATION = 1.8
+const DURATION = 2
 const EASE_OUT = [0.22, 1, 0.36, 1]
 const EASE_CURTAIN = [0.76, 0, 0.24, 1]
+const LETTERS = ['J', 'S', 'B']
 
 export default function Intro({ onDone }) {
   const ref = useRef(null)
@@ -70,73 +71,97 @@ export default function Intro({ onDone }) {
     >
       {/* Curtains: split open on exit */}
       <motion.div
-        className="absolute inset-x-0 top-0 h-1/2 bg-surface"
+        className="bg-surface absolute inset-x-0 top-0 h-1/2"
         exit={{
           y: '-100%',
           transition: { duration: 0.9, ease: EASE_CURTAIN, delay: 0.2 },
         }}
       />
       <motion.div
-        className="absolute inset-x-0 bottom-0 h-1/2 bg-surface"
+        className="bg-surface absolute inset-x-0 bottom-0 h-1/2"
         exit={{
           y: '100%',
           transition: { duration: 0.9, ease: EASE_CURTAIN, delay: 0.2 },
         }}
       />
 
-      {/* Soft accent glow behind the content */}
+      {/* Soft accent glow */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 45% 35% at 50% 50%, rgba(255,91,46,0.12), transparent 70%)',
+            'radial-gradient(ellipse 50% 40% at 50% 50%, rgba(255,91,46,0.13), transparent 70%)',
         }}
       />
 
-      {/* Centre content */}
       <motion.div
-        className="relative z-10 flex h-full flex-col items-center justify-center gap-5 px-6 text-center"
-        exit={{ opacity: 0, scale: 0.97, transition: { duration: 0.25 } }}
+        className="relative z-10 h-full"
+        exit={{ opacity: 0, transition: { duration: 0.25 } }}
       >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.85 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, ease: EASE_OUT }}
-          className="glass flex h-20 w-24 items-center justify-center bg-surface font-display text-2xl font-bold tracking-tight text-white"
-        >
-          JSB<span className="text-accent">.</span>
-        </motion.div>
+        {/* Centre: big wordmark, letters rise out of a mask */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <h1
+            aria-label="JSB"
+            className="font-display flex items-baseline text-7xl font-bold tracking-tight text-white sm:text-8xl md:text-9xl"
+          >
+            {LETTERS.map((letter, i) => (
+              <span key={letter} className="inline-block overflow-hidden py-2">
+                <motion.span
+                  aria-hidden="true"
+                  initial={{ y: '110%' }}
+                  animate={{ y: '0%' }}
+                  transition={{ duration: 0.7, delay: 0.15 + i * 0.12, ease: EASE_OUT }}
+                  className="inline-block"
+                >
+                  {letter}
+                </motion.span>
+              </span>
+            ))}
+            <motion.span
+              aria-hidden="true"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 14, delay: 0.7 }}
+              className="text-accent inline-block origin-bottom-left"
+            >
+              .
+            </motion.span>
+          </h1>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+        {/* Bottom row: name left, percentage right */}
+        <div
+          className="absolute inset-x-0 bottom-0 flex items-end justify-between px-6 pb-8 sm:px-10 sm:pb-10"
+          style={{ paddingBottom: 'max(2rem, env(safe-area-inset-bottom))' }}
         >
-          <p className="font-display text-xs font-semibold tracking-[0.35em] text-white/90 uppercase sm:text-sm">
-            Jafer Sathik B
-          </p>
-          <p className="font-body mt-2 text-xs tracking-wide text-slate-400 sm:text-sm">
-            Full-Stack · AI · Security
-          </p>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+            className="text-left"
+          >
+            <p className="font-display text-xs font-semibold tracking-[0.3em] text-white/90 uppercase sm:text-sm">
+              Jafer Sathik B
+            </p>
+            <p className="font-body mt-1.5 text-xs text-slate-400 sm:text-sm">
+              Full-Stack · AI · Security
+            </p>
+          </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.4 }}
-          className="mt-2 w-48 sm:w-56"
-        >
-          <div className="h-[2px] w-full overflow-hidden bg-white/10">
-            <motion.div
-              style={{ scaleX: barScale }}
-              className="h-full origin-left bg-gradient-to-r from-accent-warm via-accent to-accent-gold"
-            />
-          </div>
-          <p className="text-accent mt-3 font-mono text-[11px] tracking-widest tabular-nums">
-            <motion.span>{percent}</motion.span>%
+          <p className="font-display text-5xl leading-none font-bold text-white/90 tabular-nums sm:text-7xl">
+            <motion.span>{percent}</motion.span>
+            <span className="text-accent text-2xl sm:text-3xl">%</span>
           </p>
-        </motion.div>
+        </div>
+
+        {/* Full-width progress line along the very bottom */}
+        <div className="absolute inset-x-0 bottom-0 h-[3px] bg-white/10">
+          <motion.div
+            style={{ scaleX: barScale }}
+            className="from-accent-warm via-accent to-accent-gold h-full origin-left bg-gradient-to-r"
+          />
+        </div>
       </motion.div>
     </motion.div>
   )
