@@ -38,8 +38,7 @@ export default function Footer() {
           <p className="eyebrow">Contact</p>
           <h2 className="h-section">Let&apos;s Build Something</h2>
           <p className="font-body mx-auto mt-5 max-w-md text-balance text-slate-300">
-            Open to freelance work, collaborations, internships, and
-            full&#8209;time opportunities.
+            Open to internships and freelance work now, and full&#8209;time roles from 2027.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

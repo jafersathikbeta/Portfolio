@@ -30,7 +30,8 @@ const projects = [
     tagline: 'Offline RAG',
     year: 'May – Aug 2026',
     description: [
-      '100% offline, air-gapped Multimodal RAG desktop app with runtime NetworkGuard, automated PII redaction, and FAISS vector search.',
+      'Offline multimodal RAG desktop app with runtime NetworkGuard, PII redaction, document/media ingestion and FAISS vector search.',
+'Blocks all outbound network access during inference and writes hash-chained, tamper-evident audit logs for every ingestion and query.',
     ],
     tech: ['Python', 'FastAPI', 'FAISS', 'Sentence Transformers', 'Tesseract OCR', 'faster-whisper', 'PyWebView', 'Security'],
     github: 'https://github.com/jafersathikbeta/AegisRAG',
@@ -42,9 +43,9 @@ const projects = [
   {
     title: 'Incubrix Growth Engine',
     tagline: 'Lead Generation',
-    year: 'Oct 2025',
+    year: 'Oct 2026',
     description: [
-      'Hackathon assessment: B2B lead generation pipeline generating 5,000+ leads using Groq LLMs, YouTube API, and ytscrape fallback.',
+      'B2B lead-generation pipeline producing 5,000+ leads through YouTube discovery, AI-assisted outreach, lead scoring and export workflows.',
     ],
     tech: ['Python', 'Streamlit', 'Groq LLM', 'YouTube Data API', 'SQLite', 'Pandas', 'OpenPyXL', 'B2B Lead Generation'],
     github: 'https://github.com/jafersathikbeta/Incubrix-Growth-Engine',
@@ -58,7 +59,7 @@ const projects = [
     tagline: 'AI Security',
     year: 'Jan – Mar 2025',
     description: [
-      'Defensive API gateway validating AI agent actions against MITRE ATLAS and NIST CSF 2.0 threat signatures with SQLite auditing.',
+      'Defensive API gateway that validates AI-agent actions, maps threats to MITRE ATLAS and NIST CSF 2.0, and keeps an auditable SQLite record of every request.',
     ],
     tech: ['Python', 'FastAPI', 'SQLite', 'MITRE ATLAS', 'NIST CSF 2.0', 'API Security'],
     github: 'https://github.com/jafersathikbeta/Sentinel-AI-Gateway',

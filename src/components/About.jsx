@@ -112,7 +112,7 @@ const achievements = [
     title: 'IEEE Students Chapter (Chapter 12951)',
     meta: 'PSG College of Technology',
     description:
-      "One of India's earliest IEEE student branches (established 1977) and the college's largest technical association. Directed promotional video strategies and executed videography for Srishti, the annual national-level technical symposium.",
+      'Directed promotional video strategies and executed videography for Srishti, the annual national-level technical symposium.',
   },
   {
     title: 'Under-17 Zonal Badminton',
@@ -154,10 +154,8 @@ export default function About() {
               </p>
 
               <p className="font-body mt-4 text-lg leading-relaxed text-slate-300 md:text-xl">
-                Alongside that I ship production software: inventory and BOM
-                systems in Laravel for a manufacturing client, and a symposium
-                platform that handled 242 registrations and 28 paper
-                submissions.
+                Alongside that I ship production software: inventory and BOM systems in Laravel for a client, 
+                and a symposium platform that handled 242 registrations and 28 paper submissions.
               </p>
             </motion.div>
 

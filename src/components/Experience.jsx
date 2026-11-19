@@ -7,7 +7,8 @@ const experiences = [
     title: 'Forge Inventory',
     tagline: 'Inventory Management',
     year: 'Dec 2025 – Apr 2026',
-    client: 'IT Core Solutions',
+    clientLabel: 'Company',
+client: 'IT Core Solutions',
     role: 'Software Engineering Intern',
     description: [
       "Developed inventory and order-management features spanning products, materials, composite BOMs, stock transactions and order workflows. Deployed the production build remotely to the client's server via cPanel.",
@@ -23,7 +24,8 @@ const experiences = [
     title: 'Yutira 2026 Symposium',
     tagline: 'Event Platform',
     year: 'Feb 2026 – Mar 2026',
-    client: 'PSG College of Technology (Civil Dept)',
+    clientLabel: 'Client',
+client: 'PSG College of Technology (Civil Dept)',
     role: 'Freelance Full-Stack Developer',
     description: [
       'Built an event platform that processed 242 attendee registrations and 28 research-paper submissions, handling email verification, payment-status management and attendance tracking end to end.',
@@ -113,7 +115,7 @@ export default function Experience() {
                     </div>
 
                     <p className="font-body mt-1 text-sm text-slate-400 italic">
-                      Client: {exp.client}
+                      {exp.clientLabel}: {exp.client}
                     </p>
 
                     <p className="font-body mt-4 text-base font-medium text-slate-200">
