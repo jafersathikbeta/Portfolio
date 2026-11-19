@@ -176,7 +176,7 @@ export default function Hero({ ready = true }) {
 
           <a
             href={`${import.meta.env.BASE_URL}Jafer Sathik B - CV.pdf`}
-            download="Jafer Sathik B - Resume.pdf"
+            download="Jafer Sathik B - CV.pdf"
             className="group font-display hover:border-accent hover:text-accent inline-flex min-h-12 items-center gap-3 rounded-full border border-white/25 bg-white/5 px-7 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:scale-[1.03] active:scale-[0.98]"
           >
             Download Resume
